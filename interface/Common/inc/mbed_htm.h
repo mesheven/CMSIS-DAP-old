@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
 const unsigned char WebSide[] = {
 "<!-- mbed Microcontroller Website and Authentication Shortcut -->\r\n"
 "<!-- Version: " FW_BUILD " Build: " __DATE__ " " __TIME__ " -->\r\n"
 "<html>\r\n"
 "<head>\r\n"
-"<meta http-equiv=\"refresh\" content=\"0; url=http://mbed.org/device/?code=@A\"/>\r\n"
+"<meta http-equiv=\"refresh\" content=\"0; url=http://mbed.org/\"/>\r\n"
 "<title>mbed Website Shortcut</title>\r\n"
 "</head>\r\n"
 "<body></body>\r\n"
