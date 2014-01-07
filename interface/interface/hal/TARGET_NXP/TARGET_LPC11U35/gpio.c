@@ -68,7 +68,7 @@ void gpio_init(void) {
 }
 
 void gpio_set_dap_led(uint8_t state) {
-    if (state) {
+    if (!state) {
         LPC_GPIO->SET[1] |= (PIN_DAP_LED);
     } else {
         LPC_GPIO->CLR[1] |= (PIN_DAP_LED);
@@ -76,7 +76,7 @@ void gpio_set_dap_led(uint8_t state) {
 }
 
 void gpio_set_cdc_led(uint8_t state) {
-    if (state) {
+    if (!state) {
       LPC_GPIO->SET[1] |= (PIN_CDC_LED);
     } else {
       LPC_GPIO->CLR[1] |= (PIN_CDC_LED);
@@ -84,7 +84,7 @@ void gpio_set_cdc_led(uint8_t state) {
 }
 
 void gpio_set_msd_led(uint8_t state) {
-    if (state) {
+    if (!state) {
         LPC_GPIO->SET[1] |= (PIN_MSD_LED);
     } else {
         LPC_GPIO->CLR[1] |= (PIN_MSD_LED);

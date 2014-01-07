@@ -40,8 +40,11 @@
 #   define WANTED_SIZE_IN_KB                        (128)
 #elif defined(DBG_LPC812)
 #   define WANTED_SIZE_IN_KB                        (16)
+
 #elif defined(DBG_LPC11U24)
-#   define WANTED_SIZE_IN_KB                        (32)
+#   define WANTED_SIZE_IN_KB                        (22)
+#elif defined(DBG_LPC1114)
+#   define WANTED_SIZE_IN_KB                        (22)
 #endif
 
 //------------------------------------------------------------------- CONSTANTS
@@ -529,7 +532,7 @@ extern DAP_Data_t DAP_Data;  // DAP_Data.debug_port
 
 static void initDisconnect(uint8_t success) {
     drag_success = success;
-#if 0       // reset and run target
+#if 1       // reset and run target
     if (success) {
         swd_set_target_state(RESET_RUN);
     }
