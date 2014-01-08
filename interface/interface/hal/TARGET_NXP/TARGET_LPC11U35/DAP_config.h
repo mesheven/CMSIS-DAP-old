@@ -95,7 +95,7 @@ Provides definitions about:
 
 // SWDIO In/Out Pin
 #define PORT_SWDIO              0
-#define PIN_SWDIO_IN_BIT        11
+#define PIN_SWDIO_IN_BIT        13
 #define PIN_SWDIO               (1<<PIN_SWDIO_IN_BIT)
 
 // SWCLK Pin
@@ -105,7 +105,7 @@ Provides definitions about:
 
 // nRESET Pin
 #define PORT_nRESET             0
-#define PIN_nRESET_IN_BIT       13
+#define PIN_nRESET_IN_BIT       11
 #define PIN_nRESET              (1<<PIN_nRESET_IN_BIT)
 
 
@@ -127,9 +127,9 @@ Status LEDs. In detail the operation of Hardware I/O and LED pins are enabled an
  - LED output pins are enabled and LEDs are turned off.
 */
 static __inline void DAP_SETUP (void) {
-    LPC_IOCON->TDI_PIO0_11 = 0x1 | (0x2 << 3) | (1 << 7);
+    LPC_IOCON->TDO_PIO0_13 = 0x1 | (0x2 << 3) | (1 << 7);
     LPC_IOCON->TMS_PIO0_12 = 0x1 | (0x2 << 3) | (1 << 7);
-    LPC_IOCON->TDO_PIO0_13 = 0x1 | (0x0 << 3) | (1 << 7) | (1 << 10);
+    LPC_IOCON->TDI_PIO0_11 = 0x1 | (0x0 << 3) | (1 << 7) | (1 << 10);
 }
 
 /** Reset Target Device with custom specific I/O pin or command sequence.
