@@ -93,19 +93,57 @@ Provides definitions about:
 
 // Debug Port I/O Pins
 
-// SWCLK Pin
-#define PORT_SWCLK              1
-#define PIN_SWCLK               (1<<20)
-
 // SWDIO In/Out Pin
-#define PORT_SWDIO              1
-#define PIN_SWDIO               (1<<21)
-#define PIN_SWDIO_IN_BIT        21
+#define PORT_SWDIO              0
+#define PIN_SWDIO_IN_BIT        11
+#define PIN_SWDIO               (1<<PIN_SWDIO_IN_BIT)
+
+// SWCLK Pin
+#define PORT_SWCLK              0
+#define PIN_SWCLK_IN_BIT        12
+#define PIN_SWCLK               (1<<PIN_SWCLK_IN_BIT)
 
 // nRESET Pin
-#define PORT_nRESET             1
-#define PIN_nRESET              (1<<23)
-#define PIN_nRESET_IN_BIT       23
+#define PORT_nRESET             0
+#define PIN_nRESET_IN_BIT       13
+#define PIN_nRESET              (1<<PIN_nRESET_IN_BIT)
+
+
+//**************************************************************************************************
+/**
+\defgroup DAP_Config_Initialization_gr CMSIS-DAP Initialization
+\ingroup DAP_ConfigIO_gr
+@{
+
+CMSIS-DAP Hardware I/O and LED Pins are initialized with the function \ref DAP_SETUP.
+*/
+
+/** Setup of the Debug Unit I/O pins and LEDs (called when Debug Unit is initialized).
+This function performs the initialization of the CMSIS-DAP Hardware I/O Pins and the
+Status LEDs. In detail the operation of Hardware I/O and LED pins are enabled and set:
+ - I/O clock system enabled.
+ - all I/O pins: input buffer enabled, output pins are set to HighZ mode.
+ - for nTRST, nRESET a weak pull-up (if available) is enabled.
+ - LED output pins are enabled and LEDs are turned off.
+*/
+static __inline void DAP_SETUP (void) {
+    LPC_IOCON->TDI_PIO0_11 = 0x1 | (0x2 << 3) | (1 << 7);
+    LPC_IOCON->TMS_PIO0_12 = 0x1 | (0x2 << 3) | (1 << 7);
+    LPC_IOCON->TDO_PIO0_13 = 0x1 | (0x0 << 3) | (1 << 7) | (1 << 10);
+}
+
+/** Reset Target Device with custom specific I/O pin or command sequence.
+This function allows the optional implementation of a device specific reset sequence.
+It is called when the command \ref DAP_ResetTarget and is for example required
+when a device needs a time-critical unlock sequence that enables the debug port.
+\return 0 = no device specific reset sequence is implemented.\n
+        1 = a device specific reset sequence is implemented.
+*/
+static __inline uint32_t RESET_TARGET (void) {
+  return (0);              // change to '1' when a device reset sequence is implemented
+}
+
+///@}
 
 
 //**************************************************************************************************
@@ -162,7 +200,9 @@ static __inline void PORT_SWD_SETUP (void) {
     LPC_GPIO->SET[PORT_SWCLK] = PIN_SWCLK;
     LPC_GPIO->SET[PORT_SWDIO] = PIN_SWDIO;
     LPC_GPIO->SET[PORT_nRESET] = PIN_nRESET;
-    LPC_GPIO->DIR[1]  |= (PIN_SWCLK | PIN_SWDIO | PIN_nRESET);
+    LPC_GPIO->DIR[PORT_SWCLK]  |= (PIN_SWCLK);
+    LPC_GPIO->DIR[PORT_SWDIO]  |= (PIN_SWDIO);
+    LPC_GPIO->DIR[PORT_nRESET] |= (PIN_nRESET);
 }
 
 /** Disable JTAG/SWD I/O Pins.
@@ -173,7 +213,9 @@ static __inline void PORT_OFF (void) {
     LPC_GPIO->CLR[PORT_SWCLK] = PIN_SWCLK;
     LPC_GPIO->CLR[PORT_SWDIO] = PIN_SWDIO;
     LPC_GPIO->SET[PORT_nRESET] = PIN_nRESET;
-    LPC_GPIO->DIR[1] |= (PIN_SWCLK | PIN_SWDIO | PIN_nRESET);
+    LPC_GPIO->DIR[PORT_SWCLK]  &= ~(PIN_SWCLK);
+    LPC_GPIO->DIR[PORT_SWDIO]  &= ~(PIN_SWDIO);
+    LPC_GPIO->DIR[PORT_nRESET] &= ~(PIN_nRESET);
 }
 
 
@@ -318,10 +360,13 @@ static __forceinline uint32_t PIN_nRESET_IN  (void) {
            - 1: release device hardware reset.
 */
 static __forceinline void     PIN_nRESET_OUT (uint32_t bit) {
-    if (bit)
+    if (bit) {
         LPC_GPIO->SET[PORT_nRESET] = (PIN_nRESET);
-    else
+        LPC_GPIO->DIR[PORT_nRESET] &= ~(PIN_nRESET);
+    } else {
+        LPC_GPIO->DIR[PORT_nRESET] |= (PIN_nRESET);
         LPC_GPIO->CLR[PORT_nRESET] = (PIN_nRESET);
+    }
 }
 
 ///@}
@@ -360,38 +405,7 @@ static __inline void LED_RUNNING_OUT (uint32_t bit) {
 ///@}
 
 
-//**************************************************************************************************
-/**
-\defgroup DAP_Config_Initialization_gr CMSIS-DAP Initialization
-\ingroup DAP_ConfigIO_gr
-@{
 
-CMSIS-DAP Hardware I/O and LED Pins are initialized with the function \ref DAP_SETUP.
-*/
-
-/** Setup of the Debug Unit I/O pins and LEDs (called when Debug Unit is initialized).
-This function performs the initialization of the CMSIS-DAP Hardware I/O Pins and the
-Status LEDs. In detail the operation of Hardware I/O and LED pins are enabled and set:
- - I/O clock system enabled.
- - all I/O pins: input buffer enabled, output pins are set to HighZ mode.
- - for nTRST, nRESET a weak pull-up (if available) is enabled.
- - LED output pins are enabled and LEDs are turned off.
-*/
-static __inline void DAP_SETUP (void) {
-}
-
-/** Reset Target Device with custom specific I/O pin or command sequence.
-This function allows the optional implementation of a device specific reset sequence.
-It is called when the command \ref DAP_ResetTarget and is for example required
-when a device needs a time-critical unlock sequence that enables the debug port.
-\return 0 = no device specific reset sequence is implemented.\n
-        1 = a device specific reset sequence is implemented.
-*/
-static __inline uint32_t RESET_TARGET (void) {
-  return (0);              // change to '1' when a device reset sequence is implemented
-}
-
-///@}
 
 
 #endif /* __DAP_CONFIG_H__ */
