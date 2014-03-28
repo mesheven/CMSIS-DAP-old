@@ -29,34 +29,32 @@ static OS_TID isr_notify;
 
 #ifdef SW_RESET_BUTTON
 #define RESET_PORT        (1)
-#define RESET_PIN         (4)
+#define RESET_PIN         (19)
 #define RESET_INT_CH      (0)
 #define RESET_INT_MASK    (1 << RESET_INT_CH)
 #endif
 
-#define PIN_DAP_LED       (1<<9)
-#define PIN_MSD_LED       (1<<10)
+#define PIN_DAP_LED       (1<<21)
+#define PIN_MSD_LED       (1<<20)
 #define PIN_CDC_LED       (1<<11)
 
 void gpio_init(void) {
     // enable clock for GPIO port 0
     LPC_SYSCON->SYSAHBCLKCTRL |= (1UL << 6);
 
-    LPC_GPIO->DIR[1]  |= 1 << 8;
-    LPC_GPIO->CLR[1]  |= 1 << 8;
-
     // configure GPIO-LED as output
     // DAP led (green)
-    LPC_GPIO->DIR[1]  |= (PIN_DAP_LED);
-    LPC_GPIO->CLR[1]  |= (PIN_DAP_LED);
+    LPC_GPIO->DIR[0]  |= (PIN_DAP_LED);
+    LPC_GPIO->CLR[0]  |= (PIN_DAP_LED);
 
     // MSD led (red)
-    LPC_GPIO->DIR[1]  |= (PIN_MSD_LED);
-    LPC_GPIO->CLR[1]  |= (PIN_MSD_LED);
+    LPC_GPIO->DIR[0]  |= (PIN_MSD_LED);
+    LPC_GPIO->CLR[0]  |= (PIN_MSD_LED);
 
     // Serial LED (blue)
-    LPC_GPIO->DIR[1]  |= (PIN_CDC_LED);
-    LPC_GPIO->CLR[1]  |= (PIN_CDC_LED);
+      LPC_IOCON->TDI_PIO0_11 |= 0x01;
+    LPC_GPIO->DIR[0]  |= (PIN_CDC_LED);
+    LPC_GPIO->CLR[0]  |= (PIN_CDC_LED);
 
     // configure Button as input
 #if SW_RESET_BUTTON
@@ -68,26 +66,26 @@ void gpio_init(void) {
 }
 
 void gpio_set_dap_led(uint8_t state) {
-    if (!state) {
-        LPC_GPIO->SET[1] |= (PIN_DAP_LED);
+    if (state) {
+        LPC_GPIO->SET[0] |= (PIN_DAP_LED);
     } else {
-        LPC_GPIO->CLR[1] |= (PIN_DAP_LED);
+        LPC_GPIO->CLR[0] |= (PIN_DAP_LED);
     }
 }
 
 void gpio_set_cdc_led(uint8_t state) {
-    if (!state) {
-      LPC_GPIO->SET[1] |= (PIN_CDC_LED);
+    if (state) {
+      LPC_GPIO->SET[0] |= (PIN_CDC_LED);
     } else {
-      LPC_GPIO->CLR[1] |= (PIN_CDC_LED);
+      LPC_GPIO->CLR[0] |= (PIN_CDC_LED);
     }
 }
 
 void gpio_set_msd_led(uint8_t state) {
-    if (!state) {
-        LPC_GPIO->SET[1] |= (PIN_MSD_LED);
+    if (state) {
+        LPC_GPIO->SET[0] |= (PIN_MSD_LED);
     } else {
-        LPC_GPIO->CLR[1] |= (PIN_MSD_LED);
+        LPC_GPIO->CLR[0] |= (PIN_MSD_LED);
     }
 }
 

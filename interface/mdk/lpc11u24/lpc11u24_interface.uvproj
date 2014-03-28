@@ -527,16 +527,6 @@
           <GroupName>HAL-Interface</GroupName>
           <Files>
             <File>
-              <FileName>DAP_config.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\DAP_config.h</FilePath>
-            </File>
-            <File>
-              <FileName>gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\gpio.c</FilePath>
-            </File>
-            <File>
               <FileName>read_uid.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\read_uid.c</FilePath>
@@ -555,6 +545,16 @@
               <FileName>usb_buf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\usb_buf.h</FilePath>
+            </File>
+            <File>
+              <FileName>DAP_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U24\DAP_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U24\gpio.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1252,16 +1252,6 @@
           <GroupName>HAL-Interface</GroupName>
           <Files>
             <File>
-              <FileName>DAP_config.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\DAP_config.h</FilePath>
-            </File>
-            <File>
-              <FileName>gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\gpio.c</FilePath>
-            </File>
-            <File>
               <FileName>read_uid.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\read_uid.c</FilePath>
@@ -1280,6 +1270,16 @@
               <FileName>usb_buf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\usb_buf.h</FilePath>
+            </File>
+            <File>
+              <FileName>DAP_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U24\DAP_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U24\gpio.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1977,16 +1977,6 @@
           <GroupName>HAL-Interface</GroupName>
           <Files>
             <File>
-              <FileName>DAP_config.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\DAP_config.h</FilePath>
-            </File>
-            <File>
-              <FileName>gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\gpio.c</FilePath>
-            </File>
-            <File>
               <FileName>read_uid.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\read_uid.c</FilePath>
@@ -2005,6 +1995,16 @@
               <FileName>usb_buf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\usb_buf.h</FilePath>
+            </File>
+            <File>
+              <FileName>DAP_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U24\DAP_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U24\gpio.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2702,16 +2702,6 @@
           <GroupName>HAL-Interface</GroupName>
           <Files>
             <File>
-              <FileName>DAP_config.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\DAP_config.h</FilePath>
-            </File>
-            <File>
-              <FileName>gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\gpio.c</FilePath>
-            </File>
-            <File>
               <FileName>read_uid.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\read_uid.c</FilePath>
@@ -2730,6 +2720,16 @@
               <FileName>usb_buf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\usb_buf.h</FilePath>
+            </File>
+            <File>
+              <FileName>DAP_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U24\DAP_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U24\gpio.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3427,16 +3427,6 @@
           <GroupName>HAL-Interface</GroupName>
           <Files>
             <File>
-              <FileName>DAP_config.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\DAP_config.h</FilePath>
-            </File>
-            <File>
-              <FileName>gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\gpio.c</FilePath>
-            </File>
-            <File>
               <FileName>read_uid.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\read_uid.c</FilePath>
@@ -3455,6 +3445,16 @@
               <FileName>usb_buf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\usb_buf.h</FilePath>
+            </File>
+            <File>
+              <FileName>DAP_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U24\DAP_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U24\gpio.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3973,7 +3973,7 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>TARGET_LPC11U35, __RTX, DBG_ARCH_BLE, BOARD_ARCH_BLE,DBG_NRF51822</Define>
+              <Define>TARGET_LPC11U35, __RTX, DBG_ARCH_BLE, BOARD_SEEED_ARCH_BLE,DBG_NRF51822</Define>
               <Undefine></Undefine>
               <IncludePath>..\..\..\shared\USBStack\INC;..\..\Common\inc;..\..\Common\src;..\..\target\hal\DBG_NORDIC\DBG_NRF51822;..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35;..\..\interface\cmsis;..\..\interface\cmsis\TARGET_NXP\TARGET_LPC11UXX;..\..\..\shared\rtos</IncludePath>
             </VariousControls>
@@ -4152,16 +4152,6 @@
           <GroupName>HAL-Interface</GroupName>
           <Files>
             <File>
-              <FileName>DAP_config.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\DAP_config.h</FilePath>
-            </File>
-            <File>
-              <FileName>gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\gpio.c</FilePath>
-            </File>
-            <File>
               <FileName>read_uid.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\read_uid.c</FilePath>
@@ -4180,6 +4170,16 @@
               <FileName>usb_buf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U35\usb_buf.h</FilePath>
+            </File>
+            <File>
+              <FileName>DAP_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U24\DAP_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\interface\hal\TARGET_NXP\TARGET_LPC11U24\gpio.c</FilePath>
             </File>
           </Files>
         </Group>

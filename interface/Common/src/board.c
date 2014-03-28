@@ -51,7 +51,7 @@
 #define BOARD_ID        "9005"
 #define BOARD_SECRET    "xxxxxxxx"
 
-#elif defined (BOARD_ARCH_BLE)
+#elif defined (BOARD_SEEED_ARCH_BLE)
 #define BOARD_ID        "9006"
 #define BOARD_SECRET    "xxxxxxxx"
 

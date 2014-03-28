@@ -47,7 +47,7 @@
 #   define WANTED_SIZE_IN_KB                        (32)
 #elif defined(DBG_ARCH_MAX)
 #   define WANTED_SIZE_IN_KB                        (1024)
-#elif defined (DBG_ARCH_BLE)
+#elif defined (DBG_NRF51822)
 #   define WANTED_SIZE_IN_KB                        (176)
 #endif
 
