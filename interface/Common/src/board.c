@@ -47,6 +47,15 @@
 #define BOARD_ID        "1114"
 #define BOARD_SECRET    "xxxxxxxx"
 
+#elif defined (BOARD_ARCH_MAX)
+#define BOARD_ID        "9005"
+#define BOARD_SECRET    "xxxxxxxx"
+
+#elif defined (BOARD_ARCH_BLE)
+#define BOARD_ID        "9006"
+#define BOARD_SECRET    "xxxxxxxx"
+
+
 #endif
 
 BOARD board = {

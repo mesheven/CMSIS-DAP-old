@@ -346,7 +346,7 @@ __task void main_task(void) {
                         usbd_connect(0);
                         usb_state = USB_DISCONNECTED;
                         
-                       NVIC_SystemReset();
+//                        NVIC_SystemReset();
                     }
                     break;
 
@@ -355,7 +355,7 @@ __task void main_task(void) {
                     if ((usb_busy == USB_IDLE) && (DECZERO(usb_state_count) == 0)) {
                         usbd_connect(0);
                         
-                        NVIC_SystemReset();
+//                         NVIC_SystemReset();
                         
                         usb_state = USB_CONNECTING;
                         

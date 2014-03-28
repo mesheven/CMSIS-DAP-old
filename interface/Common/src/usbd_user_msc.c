@@ -45,6 +45,10 @@
 #   define WANTED_SIZE_IN_KB                        (32)
 #elif defined(DBG_LPC1114)
 #   define WANTED_SIZE_IN_KB                        (32)
+#elif defined(DBG_ARCH_MAX)
+#   define WANTED_SIZE_IN_KB                        (1024)
+#elif defined (DBG_ARCH_BLE)
+#   define WANTED_SIZE_IN_KB                        (176)
 #endif
 
 //------------------------------------------------------------------- CONSTANTS
@@ -535,13 +539,15 @@ static void initDisconnect(uint8_t success) {
 #if 1       // reset and run target
     if (success) {
         swd_set_target_state(RESET_RUN);
+        NVIC_SystemReset();
     }
 #endif
     main_blink_msd_led(0);
     init(1);
     isr_evt_set(MSC_TIMEOUT_STOP_EVENT, msc_valid_file_timeout_task_id);
-        // event to disconnect the usb
-        main_usb_disconnect_event();
+    
+    // event to disconnect the usb
+    main_usb_disconnect_event();
     semihost_enable();
 }
 
@@ -563,10 +569,9 @@ int jtag_init() {
 
         PORT_SWD_SETUP();
 
-        target_set_state(RESET_PROGRAM);
-        if (!target_flash_init(SystemCoreClock)) {
-            failSWD();
-            return 1;
+        if ((!target_set_state(RESET_PROGRAM)) || !target_flash_init(SystemCoreClock)) {
+           failSWD();
+           return 1;
         }
 
         jtag_flash_init = 1;

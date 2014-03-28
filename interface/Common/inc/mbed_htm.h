@@ -27,6 +27,7 @@ const unsigned char WebSide[] = {
 "</html>\r\n"
 "\r\n"};
 #else
+const unsigned char WebSide[] = {
 "<!-- mbed Microcontroller Website and Authentication Shortcut -->\r\n"
 "<!-- Version: " FW_BUILD " Build: " __DATE__ " " __TIME__ " -->\r\n"
 "<html>\r\n"

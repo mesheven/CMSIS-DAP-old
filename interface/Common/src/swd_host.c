@@ -807,11 +807,20 @@ uint8_t swd_set_target_state(TARGET_RESET_STATE state) {
             break;
 
         case RESET_RUN:
+#ifndef DBG_NRF51822
             swd_set_target_reset(1);
             os_dly_wait(2);
 
             swd_set_target_reset(0);
             os_dly_wait(2);
+#else
+            if (!swd_init_debug()) {
+                return 0;
+            }
+            if (!swd_write_word(NVIC_AIRCR, VECTKEY | SYSRESETREQ)) {
+                return 0;
+            }
+#endif
             break;
 
         case RESET_RUN_WITH_DEBUG:
@@ -832,18 +841,23 @@ uint8_t swd_set_target_state(TARGET_RESET_STATE state) {
             }
 
             // Reset again
+#ifndef DBG_NRF51822
             swd_set_target_reset(1);
             os_dly_wait(1);
 
             swd_set_target_reset(0);
             os_dly_wait(1);
+#else
+            if (!swd_write_word(NVIC_AIRCR, VECTKEY | SYSRESETREQ)) {
+                return 0;
+            }
+#endif
             break;
 
         case RESET_PROGRAM:
             // First reset
             swd_set_target_reset(1);
             os_dly_wait(2);
-
             swd_set_target_reset(0);
             os_dly_wait(2);
 
@@ -862,11 +876,17 @@ uint8_t swd_set_target_state(TARGET_RESET_STATE state) {
             }
 
             // Reset again
+#ifndef DBG_NRF51822
             swd_set_target_reset(1);
-            os_dly_wait(2);
+            os_dly_wait(1);
 
             swd_set_target_reset(0);
-            os_dly_wait(2);
+            os_dly_wait(1);
+#else
+            if (!swd_write_word(NVIC_AIRCR, VECTKEY | SYSRESETREQ)) {
+                return 0;
+            }
+#endif
 
             do {
                 if (!swd_read_word(DBG_HCSR, &val)) {

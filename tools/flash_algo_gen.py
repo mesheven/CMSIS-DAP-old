@@ -22,9 +22,10 @@ included in the CMSIS-DAP Interface Firmware source code.
 from struct import unpack
 from os.path import join
 
-from utils import run_cmd
+import subprocess
 from settings import *
-from paths import TMP_DIR
+
+TMP_DIR = 'tmp'
 
 
 # INPUT
@@ -39,7 +40,7 @@ ALGO_TXT_PATH = join(TMP_DIR, "flash_algo.txt")
 
 
 def gen_flash_algo():
-    run_cmd([FROMELF, '--bin', ALGO_ELF_PATH, '-o', TMP_DIR])
+    subprocess.call([FROMELF, '--bin', ALGO_ELF_PATH, '-o', TMP_DIR])
     with open(ALGO_BIN_PATH, "rb") as f, open(ALGO_TXT_PATH, mode="w+") as res:
         # Flash Algorithm
         res.write("""
@@ -62,7 +63,9 @@ const uint32_t flash_algo_blob[] = {
         res.write("\n};\n")
         
         # Address of the functions within the flash algorithm
-        stdout, _, _ = run_cmd([FROMELF, '-s', ALGO_ELF_PATH])
+        p = subprocess.Popen([FROMELF, '-s', ALGO_ELF_PATH], stdout=subprocess.PIPE)
+        stdout = p.communicate()[0]
+        print(stdout)
         res.write("""
 static const TARGET_FLASH flash = {
 """)
