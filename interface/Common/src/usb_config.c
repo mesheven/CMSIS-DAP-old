@@ -165,7 +165,12 @@
 //         </h>
 //       </h>
 //     </e>
+#if defined(USB_MASSSTORAGE_DISABLE)
+#define USBD_MSC_ENABLE             0
+#else
 #define USBD_MSC_ENABLE             1
+#endif
+
 #define USBD_MSC_EP_BULKIN          2
 #define USBD_MSC_EP_BULKOUT         2
 #define USBD_MSC_WMAXPACKETSIZE     64
@@ -427,7 +432,11 @@
 #define USBD_MSC_MAX_PACKET        (USBD_MSC_WMAXPACKETSIZE)
 #endif
 #else
+#if defined(USB_MASSSTORAGE_DISABLE)
+#define USBD_MSC_MAX_PACKET        (64)
+#else
 #define USBD_MSC_MAX_PACKET        (0)
+#endif
 #endif
 #if    (USBD_ADC_ENABLE)
 #if    (USBD_ADC_HS_ENABLE)
