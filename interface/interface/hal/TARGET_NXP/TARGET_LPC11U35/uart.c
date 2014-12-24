@@ -207,8 +207,14 @@ int32_t uart_set_configuration (UART_Configuration *config) {
                    | (stop_bits << 2)
                    | (parity << 3);
 
+
+#if defined(BOARD_DT01)
+		// disable RTS and CTS flow control
+    LPC_USART->MCR = 0x00;
+#else
 		// Set RTS/CTS
     LPC_USART->MCR = (0x01 << 7) | (0x01 << 6); // Enable RTS and CTS flow control
+#endif
 		
     // Enable UART interrupt
     NVIC_EnableIRQ (UART_IRQn);
