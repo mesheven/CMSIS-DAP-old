@@ -49,7 +49,10 @@
 #elif defined(DBG_K64F)
 #   define WANTED_SIZE_IN_KB                        (1024)
 #elif defined(DBG_LPC812)
-#   define WANTED_SIZE_IN_KB                        (16)
+#   define WANTED_SIZE_IN_KB                        (4)
+
+#elif defined(DBG_LPC11U24)
+#   define WANTED_SIZE_IN_KB                        (32)
 #elif defined(DBG_LPC1114)
 #   define WANTED_SIZE_IN_KB                        (32)
 #elif defined(DBG_LPC4330)
@@ -67,8 +70,8 @@
 #endif
 
 //------------------------------------------------------------------- CONSTANTS
-#define WANTED_SIZE_IN_BYTES        ((WANTED_SIZE_IN_KB + 16 + 8)*1024)
-#define WANTED_SECTORS_PER_CLUSTER  (8)
+#define WANTED_SIZE_IN_BYTES        ((WANTED_SIZE_IN_KB + 6 + 8)*1024)
+#define WANTED_SECTORS_PER_CLUSTER  (4)
 
 #define FLASH_PROGRAM_PAGE_SIZE         (512)
 #define MBR_BYTES_PER_SECTOR            (512)

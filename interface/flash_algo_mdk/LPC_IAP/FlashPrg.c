@@ -397,9 +397,8 @@ int EraseChip (void) {
   IAP.par[2] = _CCLK;                          // CCLK in kHz
   IAP_Call (&IAP.cmd, &IAP.stat);              // Call IAP Command
   if (IAP.stat) return (1);                    // Command Failed
-#endif
 
-return (0);                                    // Finished without Errors
+  return (0);                                  // Finished without Errors
 }
 
 

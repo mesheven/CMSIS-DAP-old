@@ -41,6 +41,8 @@
     #define USE_USB_EJECT_INSERT
 #endif
 
+#include "LPC11Uxx.h"
+
 // Event flags for main task
 // Timers events
 #define FLAGS_MAIN_90MS           (1 << 0)
@@ -458,6 +460,8 @@ __task void main_task(void) {
                     if (usb_busy == USB_IDLE) {
                         usbd_connect(0);
                         usb_state = USB_DISCONNECTED;
+                        
+//                        NVIC_SystemReset();
                     }
                     break;
 
@@ -465,7 +469,11 @@ __task void main_task(void) {
                     // Wait until USB is idle before disconnecting
                     if ((usb_busy == USB_IDLE) && (DECZERO(usb_state_count) == 0)) {
                         usbd_connect(0);
+                        
+//                         NVIC_SystemReset();
+                        
                         usb_state = USB_CONNECTING;
+
                         // Update HTML file
                         update_html_file();
 						// Delay the connecting state before reconnecting to the host - improved usage with VMs
