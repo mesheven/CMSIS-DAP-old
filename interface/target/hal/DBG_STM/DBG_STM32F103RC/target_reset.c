@@ -13,29 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef USB_BUF_H
-#define USB_BUF_H
+#include "target_reset.h"
+#include "swd_host.h"
 
-#include <absacc.h>
-#include <stdint.h>
+void target_before_init_debug(void) {
+    return;
+}
 
-#if defined(TARGET_LPC11U35) && defined(DBG_STM32F103RC)
-/* For Mass storage, each sector is 512 Byte.
- * and LPC11U35 only 2K. also need buffer for iHex function 
-*/
-#define FLASH_USB_SECTOR_SIZE			512				//same as FLASH_PROGRAM_PAGE_SIZE
+uint8_t target_unlock_sequence(void) {
+    return 1;
+}
 
-uint32_t usb_buffer[FLASH_USB_SECTOR_SIZE/4] __at(0x20000000);
-
-#else
-
-uint32_t usb_buffer[FLASH_SECTOR_SIZE/4] __at(0x20000000);
-
-#if defined(TARGET_LPC11U35) && (FLASH_SECTOR_SIZE > 2048)
-  // SRAM block on LPC11U35 is limited to 2KB
-  #error "USB buffer too large for this platform"
-#endif
-
-#endif
-
-#endif
+uint8_t target_set_state(TARGET_RESET_STATE state) {
+    return swd_set_target_state(state);
+}

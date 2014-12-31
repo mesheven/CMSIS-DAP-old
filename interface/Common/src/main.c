@@ -41,7 +41,6 @@
     #define USE_USB_EJECT_INSERT
 #endif
 
-#include "LPC11Uxx.h"
 
 // Event flags for main task
 // Timers events
